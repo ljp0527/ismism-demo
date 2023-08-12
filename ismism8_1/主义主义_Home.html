@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<title>主义主义_Home</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="./stylesheet.css">
+<!--base target="_blank"-->
+<style>
+/* 全局 */
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --green: #1abc9c;
+    --black0: #000;
+    --black3: #333;
+    --black5: #555;
+    --whitef: #fff;
+    --whited: #ddd;
+    --whitec: #ccc;
+    --redff: #ff0000;
+    --greya: #aaa;
+    --whitef1: #f1f1f1;
+    --whitef2: #f2f2f2;
+    --lightblue: #9AC5E5;
+    --orange: #E45F2B;
+    --blue: #00B9E5;
+
+    --fontsize20: 20px;
+    --fontsize30: 30px;
+    --fontsize50: 50px;
+}
+
+html {
+    margin: 5px 2%;
+}
+
+body {
+    font-family: Arial;
+    padding: 10px;
+    background: var(--whitef1);
+    /* margin: 20px 100px; */
+}
+
+::selection {
+    background-color: var(--blue);
+    color: var(--whitef2);
+}
+/* 图片 */
+img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--whited);
+    border-radius: 8px;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+[id *= "myImg"]:hover {
+    opacity: 0.7;
+}
+
+/* img:hover {opacity: 0.7;} */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 1500px;
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    height: 150px;
+    max-width: 700px;
+    text-align: center;
+    color: var(--whited);
+    padding: 10px 0;
+}
+
+.modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.1)}
+    to {transform: scale(1)}
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: var(--whitef1);
+    font-size: var(--fontsize30);
+    font-weight: bold;
+    transition: 0.3;
+}
+
+.close:hover, close:focus {
+    color: var(--greya);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
+}
+/* 头部 */
+.header {
+    padding: 30px;
+    text-align: center;
+    background: var(--green);
+}
+
+.header h1 {
+    font-size: var(--fontsize50);
+}
+/* 上导航 */
+.topnav {
+    overflow: hidden;
+    background-color: var(--black3);
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    text-align: center;
+    color: var(--whitef2);
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.topnav a:hover:not(.active) {
+    background-color: var(--whited);
+    color: var(--black0);
+}
+
+.topnav .active {
+    background-color: var(--redff);
+    color: var(--whitef);
+}
+
+/* 侧导航 */
+.leftnav {
+    float: left;   
+    width: 20%;
+    background-color: var(--wihtef1);
+}
+
+.leftnav a {
+    display: block;
+    color: var(--black3);
+    text-align: left;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.leftnav a:hover:not(.active) {
+    background-color: var(--greya);
+    color: var(--whitef);  
+}
+
+.leftnav .active {
+    background-color: var(--lightblue);
+    color: var(--whitef);
+}
+/* 主体 */
+.main {
+    float: left;
+    width: 80%;
+    background-color: var(--whitef1);
+    padding-left: 20px;
+}
+
+.fakeimg {
+    background-color: var(--greya);
+    width: 100%;
+    padding: 20px;
+}
+
+.card {
+    background-color: var(--whitef);
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 6px 0 rgba(0, 0, 0, 0.2), 1px 4px 8px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card .cardtext {
+    padding: 15px 30px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* 底部分页 */
+.center {
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: var(--black0);
+    float: left;
+    padding: 8px 16px;
+    background-color: var(--whitedf1);
+    text-decoration: none;
+    transition: background-color 0.5s;
+    border: 1px solid var(--whited);
+    margin: 0 2px;
+    font-size: var(--fontsize20);
+}
+
+.pagination a.active {
+    background-color: var(--orange);
+    color: var(--whitef);
+    border: 1px solid var(--orange);
+}
+
+.pagination a:hover:not(.active) {
+    background-color: var(--whitec);
+}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* 页脚 */
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: var(--whited);
+    margin-top: 20px;
+}
+/* 响应式 */
+@media screen and (max-width: 700px) {
+    .leftnav, .main {
+        width: 100%;
+        padding: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+    .topnav a {
+        float: none;
+        width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>主义主义哲学速查手册(demo)</h1>
+    <p>制作人员: 独步旷野</p>
+</div>
+    
+<div class="topnav">
+        <a href="#" class="active">Home</a>
+        <a href="./主义主义_意识形态.html">意识形态</a>
+        <a href="./主义主义_形而上学.html">形而上学</a>
+        <a href="./主义主义_观念论.html">观念论</a>
+        <a href="./主义主义_唯物主义.html">唯物主义</a>
+        <a href="./主义主义_特别篇.html">特别篇</a>
+        <a href="./主义主义_B站链接.html" target="_blank">B站链接</a>
+        <a href="#" style="float:right">About Me</a>
+</div>
+
+<div class="row">
+    <div class="leftnav">
+        <div class="card">
+            <a href="#main0" class="active" style="text-align:center"><b>体系简介</b></a>
+            <a href="#main1" style="text-align:center">四个格</a>
+            <a href="#main2" style="text-align:center">四个数</a>
+            <a href="#main3" style="text-align:center">实例</a>
+        </div>
+
+        <div class="card">
+            <a href="./主义主义_意识形态.html" class="active"><b>1 意识形态</b></a>
+            <a href="#">1-1 科学实在论</a>
+            <a href="#">1-2 宗教实在论</a>
+            <a href="#">1-3 唯我论</a>
+            <a href="#">1-4 平庸主义</a>
+        </div> 
+
+        <div class="card">
+            <a href="C./主义主义_形而上学.html" class="active"><b>2 形而上学</b></a>
+            <a href="#">2-1 在场形而上学</a>
+            <a href="#">2-2 辨证形而上学</a>
+            <a href="#">2-3 我思形而上学</a>
+            <a href="#">2-4 反形而上学</a>
+        </div>
+
+        <div class="card">
+            <a href="./主义主义_观念论.html" class="active"><b>3 观念论</b></a>
+            <a href="#">3-1 现象学</a>
+            <a href="#">3-2 德国观念论</a>
+            <a href="#">3-3 生存论</a>
+            <a href="#">3-4 符号学</a>
+        </div>
+
+        <div class="card">
+            <a href="./主义主义_唯物主义.html" class="active"><b>4 唯物主义(实践)</b></a>
+            <a href="#">4-1 政治-经济-意识形态批判</a>
+            <a href="#">4-2 现实的正统化</a>
+            <a href="#">4-3 建设理想社会</a>
+            <a href="#">4-4 不可能的乌托邦</a>
+        </div>
+
+        <div class="card">
+            <a href="./主义主义_特别篇.html" class="active"><b>特别篇</b></a>
+            <a href="#">辩证法</a>
+            <a href="#">精神分析</a>
+            <a href="#">爱欲经济学</a>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="card">
+            <section class="cardtext">
+                <h1 id="main0" style="text-align: center;">主义主义(ismism)</h1>
+                <p style="text-align: center;">由未明子提出的哲学与意识形态大全</p>
+                <div>
+                    <img id="myImg1" src="./pictures/雅典学院1.jpg" alt="雅典学院" width="1000px" height="300px" style="background-size:contain">
+                </div>
+                <div id="myModal1" class="modal">
+                    <span class="close">x</span>
+                    <img class="modal-content" id="modalImg1">
+                    <div id="caption"></div>
+                </div>
+                <p style="text-align: center;">本手册旨在帮助学习者快速查阅生活中对应的哲学与意识形态</p>
+                <p id="time" style="text-align: center;"></p>
+            </section>
+            
+        </div>
+
+        <div class="card">
+            <section class="cardtext">
+                <h2 id="main1">四个格之一: 场域</h2>
+                <div class="fakeimg" style="height:200px"></div>
+                <p>场域是宇宙论,场论的审慎说法;是存在论框架,叙事背景</p>
+                <br><hr>
+    
+                <h2>四个格之二: 本体</h2>
+                <div class="fakeimg" style="height:200px"></div>
+                <p>即本体论,存在论,存在性内容</p>
+                <br><hr>
+    
+                <h2>四个格之三: 现象</h2>
+                <div class="fakeimg" style="height:200px"></div>
+                <p>即认识论,主体性感知</p>
+                <br><hr>
+    
+                <h2>四个格之四: 目的</h2>
+                <div class="fakeimg" style="height:200px"></div>
+                <p>即目的论,伦理学</p>
+                <br>
+            </section>
+        </div>
+
+        <div class="card">
+            <section class="cardtext">
+                <h2 id="main2">四个数之一: 秩序</h2>
+                <div class="fakeimg" style="height:200px"></div>
+                <p>同一性,整全性,无限循环运动</p>
+                <br><hr>
+    
+                <h2>四个数之二: 冲突</h2>
+                <div class="fakeimg" style="height:200px"></div>
+                <p>秩序的失败,对抗性,不一致性,分裂的运动</p> 
+                <br><hr>
+    
+                <h2>四个数之三: 中心</h2>
+                <div class="fakeimg" style="height:200px"></div>
+                <p>中心性,中介性,妥协性,具体化的人,自我,中心化的下坠运动</p>
+                <br><hr>
+    
+                <h2>四个数之四: 虚无</h2>
+                <div class="fakeimg" style="height:200px"></div>
+                <p>无,沉默,内在不一致性,不可能性,开放性</p>
+                <br>
+            </section>
+        </div>
+
+        <div class="card">
+            <section class="cardtext">
+                <h2 id="main3">实例: 1-1-4-1 操作行为主义</h2>
+                <p><i>像训练猴子一样训练人</i></p>
+                <div class="fakeimg" style="height:200px"></div>
+                <article>
+                    <p>场域 1: 有序的世界</p>
+                    <p>本体 1: 可操作的对象</p>
+                    <p>现象 4: 黑箱</p>
+                    <p>目的 1: 变量关系</p>
+                    <br>
+                    <p><b>代表: </b>斯金纳, 快手, 抖音, 应答性, 操作性</p>
+                </article>
+            </section>     
+        </div>
+
+        <div class="card">
+            <section class="cardtext">
+                <h2>实例: 1-3-4-2 随笔主义</h2>
+                <p><i>写日记的矜持少女易于陷入的意识形态</i></p>
+                <div class="fakeimg" style="height:200px"></div>
+                <article>
+                    <p>场域 1: 世界</p>
+                    <p>本体 3: 人生在于体验</p>
+                    <p>现象 4: 对主动感受到的事物的认识论意义进行悬置</p>
+                    <p>目的 2: 因果性现实 vs 理念性可能性</p>
+                    <br>
+                    <p><b>代表: </b>穆齐尔, 《没有个性的人》, 现象学时间性分析, 人无法在当下回忆过去, 只能在未来重构体验过去 </p>
+                </article>              
+            </section>     
+        </div>       
+    </div>
+</div>
+
+<div class="center" style="margin-top: 30px;">
+    <div class="pagination">
+        <a href="#">«</a>
+        <a href="#" class="active">1</a>
+        <a href="./主义主义_意识形态.html">2</a>
+        <a href="./主义主义_形而上学.html">3</a>
+        <a href="./主义主义_观念论.html">4</a>
+        <a href="./主义主义_唯物主义.html">5</a>
+        <a href="./主义主义_特别篇.html">6</a>
+        <a href="./主义主义_B站链接.html">7</a>
+        <a href="#">»</a>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Copyright&copy; 2023 Alan Lee</p>
+</div>
+
+<script>
+    const date = new Date();
+
+  /*  const year = date.getFullYear();
+    const month = date.getMonth() + 1; 
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const text = year + " 年 " + month + " 月 " + day + " 日 " + hour + " 时 " + minutes + " 秒 ";  */
+
+    document.getElementById("time").innerHTML = date;
+</script>
+
+<script>
+    const modal = document.getElementById("myModal1");
+    const img = document.getElementById("myImg1");
+    const modalImg = document.getElementById("modalImg1");
+    const captionText = document.getElementById("caption");
+
+    img.onclick = function() {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
+
+    const span = document.getElementsByClassName("close")[0];
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+</script>
+
+<script>
+    /* const anchorElements = document.getElementsByTagName("a");
+
+    anchorElements.onclick = function() {
+        transition: 0.5s;
+    } */
+</script>
+
+</body>
+</html>
